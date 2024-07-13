@@ -1,0 +1,25 @@
+{
+  "name": "hw-18-socialnetworkapi",
+  "version": "1.0.0",
+  "description": "Creating a Social Media API with MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soko77788/hw-18-socialnetworkAPI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Soko77788/hw-18-socialnetworkAPI/issues"
+  },
+  "homepage": "https://github.com/Soko77788/hw-18-socialnetworkAPI#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1"
+  }
+}
