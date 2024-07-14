@@ -1,6 +1,4 @@
-// models/Thought.js
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, model } = require('mongoose')
 
 const ThoughtSchema = new Schema({
   thoughtText: {

@@ -1,10 +1,6 @@
-const userRoutes = require('./userRoutes');
-const thoughtRoutes = require('./thoughtRoutes');
+const router = require('express').Router()
+const apiRoutes = require('./api')
 
-const router = require('express').Router();
+router.use('/api', apiRoutes)
 
-// Mount routes
-router.use('/api/users', userRoutes);
-router.use('/api/thoughts', thoughtRoutes);
-
-module.exports = router;
+module.exports = router
