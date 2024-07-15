@@ -22,4 +22,20 @@ router.get('/', async (req, res) => {
     res.status(500).send('Error reading users')
   }
 })
+
+router.get('/:_id', async (req, res) => {
+  const { _id } = req.params
+  try {
+    const user = await User
+      .findById(_id)
+      .populate('thoughts')
+
+    res.json(user)
+  } catch(err) {
+    console.log(err)
+    res.status(500).send(`Error finding user: ${_id}`)
+  }
+})
+
+
 module.exports = router;
