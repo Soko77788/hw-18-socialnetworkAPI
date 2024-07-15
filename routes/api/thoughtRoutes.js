@@ -4,7 +4,10 @@ const { User, Thought } = require('../../models')
 router.post('/', async (req, res) => {
   try {
     const thought = await Thought.create(req.body)
+    console.log('req.body.user:', req.body.user);
 
+    console.log('thought._id:', thought._id);
+    
     await User.findByIdAndUpdate(req.body.user, {
       $addToSet: { thoughts: thought._id }
     })
