@@ -1,33 +1,24 @@
 const router = require('express').Router();
-const {
-  getAllUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser,
-  addFriend,
-  deleteFriend
-} = require('../controllers/userController');
+const { User, Thought } = require('../../models')
 
-// GET all users
-router.get('/', getAllUsers);
+router.post('/', async (req, res) => {
+  try {
+    const user = await User.create(req.body)
+    res.json(user)
+  } catch(err) {
+    console.log(err)
+    res.status(500).send('Error creating User')
+  }
+})
 
-// GET a single user by ID
-router.get('/:id', getUserById);
-
-// POST create a new user
-router.post('/', createUser);
-
-// PUT update a user by ID
-router.put('/:id', updateUser);
-
-// DELETE remove a user by ID
-router.delete('/:id', deleteUser);
-
-// POST add a new friend to a user's friend list
-router.post('/:userId/friends/:friendId', addFriend);
-
-// DELETE remove a friend from a user's friend list
-router.delete('/:userId/friends/:friendId', deleteFriend);
-
+router.get('/', async (req, res) => {
+  try {
+    const users = await User
+      .find(req.query)
+    res.json(users)
+  } catch(err) {
+    console.log(err)
+    res.status(500).send('Error reading users')
+  }
+})
 module.exports = router;
