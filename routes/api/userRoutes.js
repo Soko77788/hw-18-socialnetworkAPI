@@ -48,5 +48,30 @@ router.put('/:_id', async (req, res) => {
   }
 })
 
+router.delete('/:_id', async (req, res) => {
+  const { _id } = req.params
+  try {
+    const user = await User.findByIdAndDelete(_id)
+    const userId = user._id
+
+    // find all products with the delete deptId
+    const thoughts = await Thought.find({
+      user: userId
+    })
+
+    for (const thought of thoughts) {
+      // remove product.department field
+      await Thought.findByIdAndUpdate(thought._id, {
+        $unset: { user: 1 }
+      })
+    }
+
+    res.json({ message: 'User deleted successfully', deletedUser: user })
+  } catch(err) {
+    console.log(err)
+    res.status(500).send(`Error deleting department: ${_id}`)
+  }
+})
+
 
 module.exports = router;
