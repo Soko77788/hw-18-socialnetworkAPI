@@ -54,13 +54,13 @@ router.delete('/:_id', async (req, res) => {
     const user = await User.findByIdAndDelete(_id)
     const userId = user._id
 
-    // find all products with the delete deptId
+    // find all thoughts with the delete userId
     const thoughts = await Thought.find({
       user: userId
     })
 
     for (const thought of thoughts) {
-      // remove product.department field
+      // remove thought.user field
       await Thought.findByIdAndUpdate(thought._id, {
         $unset: { user: 1 }
       })

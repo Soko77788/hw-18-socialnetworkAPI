@@ -55,4 +55,17 @@ router.put('/:_id', async (req, res) => {
   }
 })
 
+router.delete('/:_id', async (req, res) => {
+  const { _id } = req.params
+  try {
+    const thought = await Thought.findByIdAndDelete(_id)
+    const thoughtId = thought._id
+
+    res.json({ message: 'Thought deleted successfully', deletedThought: thought })
+  } catch(err) {
+    console.log(err)
+    res.status(500).send(`Error deleting thought: ${_id}`)
+  }
+})
+
 module.exports = router;
