@@ -30,5 +30,19 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/:_id', async (req, res) => {
+  const { _id } = req.params
+  try {
+    const thought = await Thought
+      .findById(_id)
+      
+
+    res.json(thought)
+  } catch(err) {
+    console.log(err)
+    res.status(500).send(`Error finding thought: ${_id}`)
+  }
+})
+
 
 module.exports = router;
