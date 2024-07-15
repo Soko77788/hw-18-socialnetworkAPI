@@ -1,6 +1,31 @@
 const router = require('express').Router();
-const { Department, Product } = require('../../models')
+const { User, Thought } = require('../../models')
 
+router.post('/', async (req, res) => {
+  try {
+    const thought = await Thought.create(req.body)
+
+    await User.findByIdAndUpdate(req.body.user, {
+      $addToSet: { thoughts: thought._id }
+    })
+    
+    res.json(thought)
+  } catch(err) {
+    console.log(err)
+    res.status(500).send('Error creating Thought')
+  }
+})
+
+router.get('/', async (req, res) => {
+  try {
+    const thoughts = await Thought
+      .find(req.query)
+    res.json(thoughts)
+  } catch(err) {
+    console.log(err)
+    res.status(500).send('Error reading Thoughts')
+  }
+})
 
 
 module.exports = router;

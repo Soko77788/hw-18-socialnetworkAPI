@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
   try {
     const users = await User
       .find(req.query)
+      .populate('thoughts')
     res.json(users)
   } catch(err) {
     console.log(err)
