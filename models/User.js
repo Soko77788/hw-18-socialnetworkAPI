@@ -28,7 +28,7 @@ const UserSchema = new Schema(
     ],
   },
   {
-    toObject: {
+    toJSON: {
       virtuals: true,
     },
   }
