@@ -17,17 +17,4 @@ mongooseConnection.once('connected', () => {
   app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`))
 })
 
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-api', {
-//   useFindAndModify: false,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useCreateIndex: true
-// });
 
-// mongoose.set('debug', true);
-
-// // Define routes
-// app.use('/api/users', require('./routes/userRoutes'));
-// app.use('/api/thoughts', require('./routes/thoughtRoutes'));
-
-// app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
